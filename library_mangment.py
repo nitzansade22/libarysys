@@ -1,17 +1,16 @@
-# מחלקה לספר
+# create class for BOOK
 class Book:
     def __init__(self, author, title, num_of_pages):
         self.author = author
         self.title = title
         self.num_of_pages = num_of_pages
 
-# מחלקה למדף
-
+# create class for SHELF
 class Shelf:
     def __init__(self):
         self.books = []
         self.is_shelf_full = False  
-
+    
     def add_book(self, book):
         if len(self.books) < 5:
             self.books.append(book)
@@ -21,14 +20,14 @@ class Shelf:
                 self.is_shelf_full = False
         else:
             print("Shelf is full")
-
+        
     def replace_books(self, pos1, pos2):
         if pos1 < len(self.books) and pos2 < len(self.books):
             self.books[pos1], self.books[pos2] = self.books[pos2], self.books[pos1]
         else:
             print("One of the positions is invalid")
 
-# מחלקה לקורא ספרים
+# create class for READER
 class Reader:
     def __init__(self, reader_id, name):
         self.reader_id = reader_id
@@ -38,7 +37,7 @@ class Reader:
     def read_book(self, book_title):
         self.books_read.append(book_title)
 
-# מחלקת ספרייה
+# create class for LIBRARY
 class Library:
     def __init__(self):
         self.shelves = [Shelf(), Shelf(), Shelf()]
@@ -99,7 +98,7 @@ for shelf in library.shelves:
     for book in default_books:
         shelf.add_book(book)
       
-#לולאה אינסופית
+#an infinite loop until the user chooses to EXIT 
 while True:
     print("Menu:")
     print("1. Add book")
@@ -111,26 +110,26 @@ while True:
 
     choice = input("Enter your choice: ")
 
-    if choice == '1':
+    if choice == "1":
         author = input("Enter author name: ")
         title = input("Enter book title: ")
         pages = int(input("Enter number of pages: "))
         library.add_new_book(Book(author, title, pages))
 
-    elif choice == '2':
+    elif choice == "2":
         title = input("Enter book title to delete: ")
         library.delete_book(title)
 
-    elif choice == '3':
+    elif choice == "3":
         name = input("Enter reader name: ")
         reader_id = int(input("Enter reader ID: "))
         library.register_reader(name, reader_id)
 
-    elif choice == '4':
+    elif choice == "4":
         name = input("Enter reader name to remove: ")
         library.remove_reader(name)
 
-    elif choice == '5':
+    elif choice == "5":
         author = input("Enter author name to search: ")
         books = library.search_books_by_author(author)
         if books:
@@ -138,9 +137,9 @@ while True:
         else:
             print("No books found by that author.")
 
-    elif choice == '6':
+    elif choice == "6":
         print("Goodbye!")
         break
 
-    else:
-        print("Invalid choice.")
+
+
